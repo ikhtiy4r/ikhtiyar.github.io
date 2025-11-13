@@ -24,6 +24,7 @@
 .portal-page.hidden {
     opacity: 0;
     pointer-events: none;
+    transition: opacity 1s ease;
 }
 
 .portal-page .welcome-text {
@@ -98,7 +99,7 @@
         h1 {
             font-size: 18px;
             font-weight: normal;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             cursor: pointer;
             display: inline-block;
             border-bottom: 1px solid transparent;
@@ -110,11 +111,12 @@
         }
 
         nav {
-            margin-bottom: 0px;
+            margin-bottom: 0px
         }
 
         nav a {
             margin-right: 20px;
+            margin-bottom: 0px;
             border-bottom: none;
         }
 
@@ -134,7 +136,7 @@
             font-size: 16px;
             font-weight: normal;
             margin-bottom: 30px;
-            margin-top: 60px;
+            margin-top: 30px;
             text-decoration: underline;
         }
 
@@ -693,6 +695,25 @@
                 document.getElementById(targetId).classList.add('active');
             });
         });
+
+        // For work detail links
+workLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const workId = link.parentElement.dataset.workId;
+        document.getElementById(`work-detail-${workId}`).classList.add('active');
+    });
+});
+
+// For close buttons
+document.querySelectorAll('.close-overlay').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('.overlay-page').forEach(overlay => {
+            overlay.classList.remove('active');
+        });
+    });
+});
 
         // Filter functionality
         const filterOptions = document.querySelectorAll('.filter-option');
