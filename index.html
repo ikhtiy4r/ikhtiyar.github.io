@@ -253,44 +253,77 @@
             font-size: 14px;
         }
 
-        /* Overlay Page Styles */
-        .overlay-page {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #fafafa;
-            z-index: 9999;
-            overflow-y: auto;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+        /* Detail page */
+            .detail-page {
+                display: none;
+            }
+
+            .detail-page.active {
+                display: block;
+            }
+
+            .detail-header {
+                margin-bottom: 40px;
+            }
+
+            .detail-header h2 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                text-decoration: none;
+                margin-top: 0;
+            }
+
+            .detail-meta {
+                font-size: 14px;
+                color: #666;
+                margin-bottom: 30px;
+            }
+
+            .detail-content {
+                margin-bottom: 40px;
+            }
+
+            .detail-media {
+                margin-bottom: 30px;
+            }
+
+            .detail-media img,
+            .detail-media video {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                border: 1px solid #ddd;
+            }
+
+            .detail-description {
+                font-size: 14px;
+                line-height: 1.8;
+            }
+
+            .detail-description p {
+                margin-bottom: 15px;
+            }
+
+            .back-link {
+                display: inline-block;
+                margin-bottom: 30px;
+                border-bottom: 1px solid #333;
+            }
+
+            .intro {
+                margin-bottom: 40px;
+                font-size: 14px;
+            }
+
+            .contact-info {
+                font-size: 14px;
+            }
+
+            .contact-info p {
+                margin-bottom: 10px;
         }
 
-        .overlay-page.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
 
-        .overlay-page .close-overlay {
-            position: fixed;
-            top: 40px;
-            right: 40px;
-            cursor: pointer;
-            z-index: 10000;
-        }
-
-        .overlay-page .close-overlay:hover {
-        opacity: 0.6;
-        }
-
-@media (max-width: 768px) {
-    .overlay-page .close-overlay {
-        top: 30px;
-        right: 20px;
-    }
-}
 
         /* Waiting, Wishing, Thinking page */
         .thinking-page {
@@ -342,7 +375,7 @@
     <div id="preview-overlay" class="preview-overlay"></div>
 
 <!-- Entry Portal Page -->
-<div class="portal-page" id="portal-page">
+<div class="portal-page hidden" id="portal-page">
     <div class="welcome-text">
         welcome to ikhtiyar.
     </div>
@@ -495,19 +528,6 @@
             </div>
         </div>
 
-        <!-- Overlay Detail Pages-->
-        <div id="work-detail-project-one" class="overlay-page">
-        <div style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
-        <a href="#" class="close-overlay">✕ Close</a>
-        
-        <div class="detail-header">
-            <h2>Project Title One</h2>
-            <div class="detail-meta">2024 · Video</div>
-        </div>
-
-        <!-- rest of your content -->
-    </div>
-</div>
         <!-- Work Detail Pages -->
         <div id="work-detail-project-one" class="detail-page">
             <a href="#system" class="back-link">← Back to System</a>
@@ -695,15 +715,6 @@
                 document.getElementById(targetId).classList.add('active');
             });
         });
-
-        // For work detail links
-workLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const workId = link.parentElement.dataset.workId;
-        document.getElementById(`work-detail-${workId}`).classList.add('active');
-    });
-});
 
 // For close buttons
 document.querySelectorAll('.close-overlay').forEach(btn => {
